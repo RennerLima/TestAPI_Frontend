@@ -1,0 +1,64 @@
+table {
+    width: 100%;
+    text-align: center;
+    -ms-flex-align: baseline;
+    overflow-x: auto;
+    overflow-y: hidden;
+    min-width: 1000px;
+    padding: 5px
+  }
+
+  .th {
+    text-align: center;
+  }
+
+  .header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+ 
+  th.mat-sort-header-sorted {
+    color: black;
+  }
+
+  .mat-column-Id {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-DataVenda {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-QuantidadeItens {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-NomeProduto {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-NomeVendedor {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-ValorComissaoVenda {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }
+
+  .mat-column-ValorTotal {
+    text-align: center;
+    padding: 30px;
+    margin: 10em;
+  }

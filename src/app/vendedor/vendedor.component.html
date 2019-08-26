@@ -1,0 +1,80 @@
+<div class="container">
+  <form [formGroup]="vendedorForm" (ngSubmit)="onFormSubmit()">
+    <table>
+      <td class="tbl1">
+        <mat-form-field class="demo-full-width">
+          <input formControlName="Nome" matTooltip="Escreva nome do vendedor" matInput placeholder="Vendedor">
+        </mat-form-field>
+        <mat-error>
+          <span *ngIf="!vendedorForm.get('Nome').value"></span>
+        </mat-error>
+      </td>
+      <td class="tbl1">
+        <mat-form-field class="demo-full-width">
+          <input formControlName="Comissao" matTooltip="Escreva o valor da comissao" matInput placeholder="Comissao">
+        </mat-form-field>
+        <mat-error>
+          <span *ngIf="!vendedorForm.get('Comissao').value"></span>
+        </mat-error>
+      </td>
+      <td class="tbl1">
+          <mat-radio-group matTooltip="Ativo ou Inativo" formControlName="FlagAtivo">
+            <mat-radio-button value=true>Ativo</mat-radio-button>
+            <mat-radio-button value=false>Inativo</mat-radio-button>
+          </mat-radio-group>
+          <mat-error>
+            <span *ngIf="!vendedorForm.get('FlagAtivo').value"></span>
+          </mat-error>
+      </td>
+      <td class="content-center">
+        <button type="submit" matTooltip="Clique para enviar" (click)="vendedorForm.valid">Enviar</button>
+        <button type="reset" matTooltip="Cique para cancelar" (click)="resetForm()">Cancelar</button>
+      </td>
+    </table>
+  </form>
+</div>
+
+<div class="container">
+  <form [formGroup]="vendedorForm">
+    <table>
+      <mat-form-field>
+        <mat-select placeholder="Vendedor" tabindex="1" formControlName="Nome"
+        [(ngModel)]="filter.Id">
+        <mat-option>Todos...</mat-option>
+        <mat-option *ngFor="let vendedor of lstVendedor" [value]="vendedor.Id">{{ vendedor.Nome }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <td class="content-center">
+          <button type="submit" matTooltip="Clique para pesquisar" (click)="pesquisar()">Pesquisar</button>
+      </td>
+    </table>
+    <br><br>
+    <table mat-table [dataSource]="tableVendedor" matSort>
+      <ng-container matColumnDef="Id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+        <td mat-cell *matCellDef="let vendedor"> {{vendedor.Id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Nome">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
+        <td mat-cell *matCellDef="let vendedor"> {{vendedor.Nome}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Comissao">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Comissao </th>
+        <td mat-cell *matCellDef="let vendedor"> {{vendedor.Comissao}}% </td>
+      </ng-container>
+      <ng-container matColumnDef="Flag">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> FlagAtivo </th>
+        <td mat-cell *matCellDef="let vendedor"> {{vendedor.FlagAtivo ? "Sim" : "Não"}} </td>
+      </ng-container>
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef> Deletar </th>
+        <td mat-cell *matCellDef="let vendedor">
+          <button md-raised-button (click)="delVendedor(vendedor.Id)">Deletar</button>
+        </td>
+      </ng-container>      
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>                                  
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>              
+  </form>
+</div>
